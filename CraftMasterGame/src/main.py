@@ -10,7 +10,7 @@ def main():
     game = Game(width=WINDOW_WIDTH, height=WINDOW_HEIGHT,caption='CraftMaster', resizable=True, refreshRate = 100)
     game.set_fullscreen()
     game.set_icon(ICON)
-    BACKGROUNDMUSIC.play()
+    #BACKGROUNDMUSIC.play()
     pyglet.app.run()
 
 if __name__ == '__main__':

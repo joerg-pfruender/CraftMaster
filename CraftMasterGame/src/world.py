@@ -5,6 +5,8 @@ from pyglet.gl import *
 from processQueue import ProcessQueue
 from shape import Shape3D
 from loadSource import *
+from buildings import *
+from directions import *
 
 if sys.version_info[0] >= 3:
     xrange = range
@@ -150,9 +152,15 @@ class World(object):
         #         s -= d  # decrement side lenth so hills taper off
 
     def house(self):
-        for i in range(1,10):
-            for j in range(1,10):
-                self.add_block((i, -1, j), BRICK.name)
+        # for i in range(1,10):
+        #    for j in range(1,10):
+        #        self.add_block((i, -1, j), BRICK.name)
+        floor = Floor(10, 10, EAST, SOUTH, STONE.name)
+        wall1 = Wall(10, 5, EAST, STONE.name)
+        wall2 = Wall(10, 5, SOUTH, STONE.name)
+        floor.build(self, (1, -1, 1))
+        wall1.build(self, (1, 0, 1))
+        wall2.build(self, (1, 0, 1))
 
     def collide(self, position, creature):
         """ Checks to see if the player at the given `position` and `height`
