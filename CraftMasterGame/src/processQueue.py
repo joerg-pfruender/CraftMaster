@@ -24,8 +24,8 @@ class ProcessQueue(object):
         the game loop to run smoothly.
 
         """
-        start = time.clock()
-        while self.queue and time.clock() - start < maxPeriod:
+        start = time.process_time()
+        while self.queue and time.process_time() - start < maxPeriod:
             self.dequeue()
 
     def process_entire_queue(self):
