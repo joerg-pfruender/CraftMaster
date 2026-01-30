@@ -1,2 +1,5 @@
 .idea
 *.iml
+venv
+/CraftMasterGame/src/game1.json
+/CraftMasterGame/src/game2.json

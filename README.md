@@ -19,11 +19,11 @@ CraftMaster is a 3D sandbox game developed by three software engineering student
 
 ### Requirements
 
-| Software        | [Chocolatey](https://chocolatey.org/) (Windows) | Ubuntu Linux                                    | [Homebrew](https://brew.sh/)     | URL                                                                                                                            |
-|-----------------|-------------------------------------------------|-------------------------------------------------|----------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
-| **Git**         | `choco install git`                             | `sudo apt install git`                          | `brew install git`               | [https://git-scm.com/book/en/v2/Getting-Started-Installing-Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) |
-| **Python**(3.8) | `choco install python38`                        | built in                                        | `brew install python@3.8`        | [https://www.python.org/downloads/]                                                                                            |
-| **PyCharm**     | `choco install pycharm-community`               | `sudo snap install pycharm-community --classic` | `brew install --cask pycharm-ce` | [https://www.jetbrains.com/edu-products/download/#section=pycharm-edu]                                                         |
+| Software         | [Chocolatey](https://chocolatey.org/) (Windows) | Ubuntu Linux                                    | [Homebrew](https://brew.sh/)     | URL                                                                                                                            |
+|------------------|-------------------------------------------------|-------------------------------------------------|----------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| **Git**          | `choco install git`                             | `sudo apt install git`                          | `brew install git`               | [https://git-scm.com/book/en/v2/Getting-Started-Installing-Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) |
+| **Python**(3.10) | `choco install python --version=3.10.0`         | built in                                        | `brew install python@3.10`       | [https://www.python.org/downloads/]                                                                                            |
+| **PyCharm**      | `choco install pycharm-community`               | `sudo snap install pycharm-community --classic` | `brew install --cask pycharm-ce` | [https://www.jetbrains.com/edu-products/download/#section=pycharm-edu]                                                         |
 
 ### Installation
 
@@ -39,9 +39,6 @@ https://realpython.com/python-virtual-environments-a-primer/
 
 Windows `python -m venv venv`
 
-
-
-
 ```shell
 pip install python
 ```
@@ -49,6 +46,11 @@ pip install python
 ```shell
 pip install pyglet==1.5.27
 ```
+- for typechecking install mypy:
+```shell
+pip install mypy
+```
+ 
 - To start the program, sequentially run:
 
 ```shell
