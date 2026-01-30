@@ -1,6 +1,7 @@
+# mypy: disable-error-code="Module has no attribute"
 import sys,random,time
 
-from pyglet.gl import *
+from pyglet.gl import GL_QUADS
 
 from processQueue import ProcessQueue
 from shape import Shape3D
@@ -147,7 +148,7 @@ class World(object):
                         self.add_block((x, y, z), t.name, immediate=False)
                 s -= d  # decrement side lenth so hills taper off
 
-    def collide(self, position, creature):
+    def collide(self, position: tuple, creature):
         """ Checks to see if the player at the given `position` and `height`
         is colliding with any blocks in the world.
 
@@ -169,8 +170,8 @@ class World(object):
         # a collision. If .49, you sink into the ground, as if walking through
         # tall GRASS.coordinates. If >= .5, you'll fall through the ground.
         pad = 0.25
-        p = list(position)
-        np = self._normalize(position)
+        p: list = list(position)
+        np: tuple = self._normalize(position)
         for face in [( 0, 1, 0),( 0,-1, 0),(-1, 0, 0),( 1, 0, 0),( 0, 0, 1),( 0, 0,-1)]:  # check all surrounding blocks
             for i in xrange(3):  # check each dimension independently
                 if not face[i]:
@@ -193,7 +194,7 @@ class World(object):
                     break
         return tuple(p)
 
-    def hit_test(self, position, vector, max_distance=8):
+    def hit_test(self, position: tuple, vector: tuple, max_distance=8):
         """ Line of sight search from current position. If a block is
         intersected it is returned, along with the block previously in the line
         of sight. If no block is found, return None, None.
@@ -220,14 +221,14 @@ class World(object):
             x, y, z = x + dx / m, y + dy / m, z + dz / m
         return None, None
 
-    def add_block(self, position, block, immediate=True):
+    def add_block(self, position: tuple, block: list, immediate=True):
         """ Add a block with the given `texture` and `position` to the world.
 
         Parameters
         ----------
         position : tuple of len 3
             The (x, y, z) position of the block to add.
-        texture : list of len 3
+        block : list of len 3
             The coordinates of the texture squares. Use `tex_coords()` to
             generate.
         immediate : bool
@@ -245,7 +246,7 @@ class World(object):
                 self._show_block(position)
             self._check_neighbors(position)
 
-    def remove_block(self, position, immediate=True):
+    def remove_block(self, position: tuple, immediate=True):
         """ Remove the block at the given `position`.
 
         Parameters
@@ -265,7 +266,7 @@ class World(object):
                 self._hide_block(position)
             self._check_neighbors(position)
 
-    def _check_neighbors(self, position):
+    def _check_neighbors(self, position: tuple):
         """ Check all blocks surrounding `position` and ensure their visual
         state is current. This means hiding blocks that are not _exposed and
         ensuring that all _exposed blocks are shown. Usually used after a block
@@ -284,7 +285,7 @@ class World(object):
                 if key in self.shown:
                     self._hide_block(key)
 
-    def _exposed(self, position):
+    def _exposed(self, position: tuple) -> bool:
         """ Returns False is given `position` is surrounded on all 6 sides by
         blocks, True otherwise.
 
@@ -295,7 +296,7 @@ class World(object):
                 return True
         return False
 
-    def _show_block(self, position, immediate=True):
+    def _show_block(self, position: tuple, immediate=True):
         """ Show the block at the given `position`. This method assumes the
         block has already been added with add_block()
 
@@ -325,7 +326,7 @@ class World(object):
         else:
             self.processQueue.enqueue(self._show_block, position, True)
 
-    def _hide_block(self, position, immediate=True):
+    def _hide_block(self, position: tuple, immediate=True):
         """ Hide the block at the given `position`. Hiding does not remove the
         block from the world.
 
@@ -390,7 +391,7 @@ class World(object):
         for sector in hide:
             self._hide_sector(sector)
 
-    def _sectorize(self,position):
+    def _sectorize(self,position: tuple) -> tuple:
         """ Returns a tuple representing the sector for the given `position`.
 
         Parameters
@@ -406,7 +407,7 @@ class World(object):
         x, y, z = x // self.sectorSize, y // self.sectorSize, z // self.sectorSize
         return (x, 0, z)
 
-    def _normalize(self,position):
+    def _normalize(self,position: tuple) -> tuple:
         """ Accepts `position` of arbitrary precision and returns the block
         containing that position.
 

@@ -1,7 +1,7 @@
 import math
 from creature import Creature
 class Player(Creature):
-    def __init__(self,position):
+    def __init__(self,position: tuple):
         super(Player,self).__init__(position = position, height = 2, health = 100)
         self.energy = 100
 

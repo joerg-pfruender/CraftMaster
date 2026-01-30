@@ -1,6 +1,7 @@
+# mypy: disable-error-code="Module has no attribute"
+
 import sys,time
 
-from pyglet.gl import *
 from pyglet.window import key, mouse
 
 from screen import Screen

@@ -1,7 +1,7 @@
 import math
 
 class Creature(object):
-    def __init__(self, position, health,dy = 0, walkSpeed = 5, flying = False, flySpeed = 10, height = 1, jumpHeight = 1.0):
+    def __init__(self, position: tuple, health,dy = 0, walkSpeed = 5, flying = False, flySpeed = 10, height = 1, jumpHeight = 1.0):
         # Current (x, y, z) position in the world, specified with floats. Note
         # that, perhaps unlike in math class, the y-axis is the vertical axis.
         self.position = position

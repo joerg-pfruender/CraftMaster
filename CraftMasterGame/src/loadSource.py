@@ -1,16 +1,17 @@
 import os,math
 
 from block import Block
+from pyglet import image, media
 from pyglet.gl import *
 
 # the icon of the window
-ICON = pyglet.image.load(os.path.join("source","icon.png"))
+ICON = image.load(os.path.join("source","icon.png"))
 # the music played when any blocks are built
-BUILDSOUND = pyglet.media.load(os.path.join("source",'build.wav'),streaming=False)
+BUILDSOUND = media.load(os.path.join("source",'build.wav'),streaming=False)
 # the music played when any blocks are distroied
-DESTROYSOUND = pyglet.media.load(os.path.join("source",'destroy.wav'),streaming=False)
+DESTROYSOUND = media.load(os.path.join("source",'destroy.wav'),streaming=False)
 # the background music played whenever the game is started
-BACKGROUNDMUSIC = pyglet.media.load(os.path.join("source",'bgmusic.wav'))
+BACKGROUNDMUSIC = media.load(os.path.join("source",'bgmusic.wav'))
 
 # blocks of the game
 BRICK = Block("BRICK",(0, 0), (0, 0), (0, 0), 1, os.path.join("texture","Brick.png"),destroyable = True)

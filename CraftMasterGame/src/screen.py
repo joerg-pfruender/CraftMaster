@@ -1,5 +1,11 @@
 import math
-from pyglet.gl import *
+from pyglet.gl import glEnable, glClearColor, \
+    glFogfv, glHint, glFogi, glFogf, glDisable, glViewport, glMatrixMode, \
+    glLoadIdentity, glTexParameteri, glOrtho, gluPerspective, glRotatef, glTranslatef, \
+    GL_FOG, GL_FOG_COLOR, GL_FOG_HINT, GL_DONT_CARE, GL_FOG_MODE, GL_LINEAR, GL_FOG_START, GL_FOG_END, \
+    GL_CULL_FACE, GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST, GL_TEXTURE_MAG_FILTER, \
+    GL_DEPTH_TEST, GL_PROJECTION, GL_MODELVIEW, \
+    GLfloat
 
 
 class Screen(object):
@@ -82,7 +88,7 @@ class Screen(object):
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
 
-    def _setup_3d(self,rotation,position):
+    def _setup_3d(self,rotation,position: tuple):
         """ Configure OpenGL to draw in 3d.
             @param rotation tuple of (x,y) representing the the rotation angle in  the z-axis down and the ground up
             @param position tuple of (x,y,z) representing the position of the view

@@ -4,6 +4,7 @@ import json,os
 from sys import platform
 
 from pyglet.gl import *
+from pyglet import window
 
 from player import Player
 from world import World
@@ -13,7 +14,7 @@ from mainScene import MainScene
 from settingScene import SettingScene
 from loadSource import ALLBLOCKS,PLACEBLOCKS
 
-class Game(pyglet.window.Window):
+class Game(window.Window):
 ##  @brief Game module
     def __init__(self, refreshRate = 60,*args, **kwargs):
         super(Game, self).__init__(*args, **kwargs)
