@@ -1,6 +1,11 @@
 from screen import Screen
 from button import OnOffButton, Button
 
+GREEN_RGBA = (0, 255, 0, 255)
+WHITE = (255, 255, 255)
+WHITE_RGBA = (255, 255, 255, 255)
+BLACK = (0, 0, 0)
+
 
 class SettingScene(Screen):
     def __init__(self, game):
@@ -9,16 +14,16 @@ class SettingScene(Screen):
         x, y = self.game.width, self.game.height
         self.mode = OnOffButton(0, 0, x // 10, y // 8, [(self.game.world.changeMode, ("night",))],
                                 [(self.game.world.changeMode, ("day",))], leftText="Day", rightText="Night")
-        self.returnBut = Button(0, 0, x // 8, y // 20, "Return", (255, 255, 255, 255), (0, 0, 0))
+        self.returnBut = Button(0, 0, x // 8, y // 20, "Return", WHITE_RGBA, BLACK)
         self.returnBut.changeFunc([(self.game.goBack, ())])
-        self.quitGameBut = Button(0, 0, x // 8, y // 20, "Quit", (255, 255, 255, 255), (0, 0, 0))
+        self.quitGameBut = Button(0, 0, x // 8, y // 20, "Quit", WHITE_RGBA, BLACK)
         self.quitGameBut.changeFunc([(self.game.close, ())])
-        self.saveOneBut = Button(0, 0, x // 3, y // 24, "Save on game 1 and Return", (255, 255, 255, 255), (0, 0, 0))
+        self.saveOneBut = Button(0, 0, x // 3, y // 24, "Save on game 1 and Return", WHITE_RGBA, BLACK)
         self.saveOneBut.changeFunc([
             (self.game.saveGame, ("game1.json",)),
             (self.game.changeScene, ("main",))
         ])
-        self.saveTwoBut = Button(0, 0, x // 3, y // 24, "Save on game 2 and Return", (255, 255, 255, 255), (0, 0, 0))
+        self.saveTwoBut = Button(0, 0, x // 3, y // 24, "Save on game 2 and Return", WHITE_RGBA, BLACK)
         self.saveTwoBut.changeFunc([
             (self.game.saveGame, ("game2.json",)),
             (self.game.changeScene, ("main",))
@@ -46,11 +51,11 @@ class SettingScene(Screen):
 
     def mouseMove(self, x, y, dx, dy):
         """called when player move their mouse"""
-        self.returnBut.on_mouse(x, y, (0, 255, 0, 255), (255, 255, 255))
-        self.quitGameBut.on_mouse(x, y, (0, 255, 0, 255), (255, 255, 255))
+        self.returnBut.on_mouse(x, y, GREEN_RGBA, WHITE)
+        self.quitGameBut.on_mouse(x, y, GREEN_RGBA, WHITE)
         if self.game.world.world != {}:
-            self.saveOneBut.on_mouse(x, y, (0, 255, 0, 255), (255, 255, 255))
-            self.saveTwoBut.on_mouse(x, y, (0, 255, 0, 255), (255, 255, 255))
+            self.saveOneBut.on_mouse(x, y, GREEN_RGBA, WHITE)
+            self.saveTwoBut.on_mouse(x, y, GREEN_RGBA, WHITE)
 
     def mouseClick(self, x, y, button, modifiers):
         """called when player click the mouse"""
