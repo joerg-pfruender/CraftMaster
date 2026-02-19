@@ -9,6 +9,8 @@ class SettingScene(Screen):
         self.mode = OnOffButton(0,0,x//10,y//8,[(self.game.world.changeMode,("night",))],[(self.game.world.changeMode,("day",))],leftText = "Day",rightText = "Night")
         self.returnBut = Button(0,0,x//8,y//20,"Return",(255,255,255,255),(0,0,0))
         self.returnBut.changeFunc([(self.game.goBack,())])
+        self.quitGameBut = Button(0,0,x//8,y//20,"Quit",(255,255,255,255),(0,0,0))
+        self.quitGameBut.changeFunc([(self.game.close,())])
         self.saveOneBut = Button(0,0,x//3,y//24,"Save on game 1 and Return",(255,255,255,255),(0,0,0))
         self.saveOneBut.changeFunc([
                                 (self.game.saveGame,("game1.json",)),
@@ -24,6 +26,7 @@ class SettingScene(Screen):
         """called when the size of screen changes and change the size of components in setting scene based on that"""
         self.mode.on_resize(width//2,height//2,width//10,height//8)
         self.returnBut.on_resize(20,height - 20 - width//24,width//8,width//20)
+        self.quitGameBut.on_resize(9*width//16,height - 20 - width//24,width//8,width//20)
         self.saveOneBut.on_resize(5*width//48,height//10,width//3,width//24)
         self.saveTwoBut.on_resize(9*width//16,height//10,width//3,width//24)
 
@@ -34,6 +37,7 @@ class SettingScene(Screen):
         self._setup_2d()
         self.mode.draw()
         self.returnBut.draw()
+        self.quitGameBut.draw()
         if self.game.world.world != {}:
             self.saveOneBut.draw()
             self.saveTwoBut.draw()
@@ -41,6 +45,7 @@ class SettingScene(Screen):
     def mouseMove(self, x, y, dx, dy):
         """called when player move their mouse"""
         self.returnBut.on_mouse(x,y,(0,255,0,255),(255,255,255))
+        self.quitGameBut.on_mouse(x,y,(0,255,0,255),(255,255,255))
         if self.game.world.world != {}:
             self.saveOneBut.on_mouse(x,y,(0,255,0,255),(255,255,255))
             self.saveTwoBut.on_mouse(x,y,(0,255,0,255),(255,255,255))
@@ -49,6 +54,7 @@ class SettingScene(Screen):
         """called when player click the mouse"""
         self.mode.on_click(x,y)
         self.returnBut.on_click(x,y)
+        self.quitGameBut.on_click(x,y)
         if self.game.world.world != {}:
             self.saveOneBut.on_click(x,y)
             self.saveTwoBut.on_click(x,y)
