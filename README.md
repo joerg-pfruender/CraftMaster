@@ -19,47 +19,35 @@ CraftMaster is a 3D sandbox game developed by three software engineering student
 
 ### Requirements
 
-| Software         | [Chocolatey](https://chocolatey.org/) (Windows) | Ubuntu Linux                                    | [Homebrew](https://brew.sh/)     | URL                                                                                                                            |
-|------------------|-------------------------------------------------|-------------------------------------------------|----------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
-| **Git**          | `choco install git`                             | `sudo apt install git`                          | `brew install git`               | [https://git-scm.com/book/en/v2/Getting-Started-Installing-Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) |
-| **Python**(3.10) | `choco install python --version=3.10.0`         | built in                                        | `brew install python@3.10`       | [https://www.python.org/downloads/]                                                                                            |
-| **PyCharm**      | `choco install pycharm-community`               | `sudo snap install pycharm-community --classic` | `brew install --cask pycharm-ce` | [https://www.jetbrains.com/edu-products/download/#section=pycharm-edu]                                                         |
+| Software         | [Chocolatey](https://chocolatey.org/) (Windows)                          | Ubuntu Linux                                    | [Homebrew](https://brew.sh/) (Mac&nbsp;OS)                               | URL                                                                                                                                          | Comment            | 
+|------------------|--------------------------------------------------------------------------|-------------------------------------------------|--------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|--------------------|
+| **Git**          | `choco install git`                                                      | `sudo apt install git`                          | `brew install git`                                                       | [https://git-scm.com/book/en/v2/Getting-Started-Installing-Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)               |                    |
+| **Python**(3.10) | `choco install python --version=3.10.0`                                  | built in                                        | `brew install python@3.10`                                               | [https://www.python.org/downloads/](https://www.python.org/downloads/)                                                                       |                    |
+| a) **PyCharm**   | `choco install pycharm-community`                                        | `sudo snap install pycharm-community --classic` | `brew install --cask pycharm-ce`                                         | [https://www.jetbrains.com/edu-products/download/#section=pycharm-edu](https://www.jetbrains.com/edu-products/download/#section=pycharm-edu) | for fast computers |
+| b) **Eric**      | [Download Eric](https://eric-ide.python-projects.org/eric-download.html) | `sudo apt install eric`                         | [Download Eric](https://eric-ide.python-projects.org/eric-download.html) | [https://eric-ide.python-projects.org/](https://eric-ide.python-projects.org/)                                                               | for slow computers |
 
 ### Installation
 
-#### 1.clone repository
 
-git clone https://github.com/joerg-pfruender/CraftMaster
-
-
-create virtual environment:
-https://realpython.com/python-virtual-environments-a-primer/
-
-*nix: `python3 -m venv venv`
-
-Windows `python -m venv venv`
-
-```shell
-pip install python
-```
-- To install **pyglet**(it requires pip to be installed), run:
-```shell
-pip install pyglet==1.5.27
-```
-- for typechecking install mypy:
-```shell
-pip install mypy
-```
+| Step                                                                                       | Linux / Mac&nbsp;OS                                        | Windows                                                    |
+|--------------------------------------------------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------|
+| clone the repository                                                                       | `git clone https://github.com/joerg-pfruender/CraftMaster` | `git clone https://github.com/joerg-pfruender/CraftMaster` | 
+| cd into the source directory                                                               | `cd CraftMaster/CraftMasterGame/src`                       | `cd CraftMaster\CraftMasterGame\src`                       | 
+| [create virtual environment](https://realpython.com/python-virtual-environments-a-primer/) | `python3 -m venv venv`                                     | `python -m venv venv`                                      |
+| activate virtual environment                                                               | `source venv/bin/activate`                                 | `venv\Scripts\activate`                                    | 
+| install pyglet                                                                             | `pip install pyglet==1.5.27`                               | `pip install pyglet==1.5.27`                               | 
  
-- To start the program, sequentially run:
+### Start the program
 
-```shell
-cd CraftMaster/CraftMasterGame/src
-```
-```shell
-python main.py
-```
-- To learn the instruction of how to play the game, follow the [**CraftMaster User Guide**](https://github.com/RexWangSida/CraftMaster/blob/master/CraftMasterGame/Docs/UserGuide/UserGuide.pdf).
+| Step                                                                                         | Linux / Mac&nbsp;OS                  | Windows (cmd)                          |
+|----------------------------------------------------------------------------------------------|--------------------------------------|----------------------------------------|
+| cd into the source directory                                                                 | `cd CraftMaster/CraftMasterGame/src` | `cd CraftMaster\CraftMasterGame\src`   | 
+| [activate virtual environment](https://realpython.com/python-virtual-environments-a-primer/) | `source venv/bin/activate`           | `venv\Scripts\activate`                | 
+| run program                                                                                  | `python main.py`                     | `python main.py`                       |   
+
+### How to play
+
+To learn the instruction of how to play the game, follow the [**CraftMaster User Guide**](https://github.com/RexWangSida/CraftMaster/blob/master/CraftMasterGame/Docs/UserGuide/UserGuide.pdf).
 
 ## <a name = "views"> CraftMaster Views🏔</a>
 
