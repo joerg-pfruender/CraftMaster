@@ -7,27 +7,28 @@ from pyglet.gl import *
 class Button(object):
     ##  @brief Button module
     #   @details Create a button with specified position, sizes, text, color, and functions
-    def __init__(self, x, y, width, height, text, textColor, quadColor):
+    def __init__(self, x, y, width, height, text, textColorRgba, buttonColorRgb):
         ##  @brief Initializer
         #   @param x,y position of button
         #   @param width, height size of button
         #   @param text text in button to be displayed
-        #   @param textColor, quadColor color of text and Button
+        #   @param textColorRgba, color of text (RGBA)
+        #   @param buttonColor, color of button
         self.x = x
         self.y = y
         self.width = width
         self.height = height
-        self.textColor = textColor
-        self.quadColor = quadColor
+        self.textColorRgba = textColorRgba
+        self.buttonColorRgb = buttonColorRgb
         # list of functions that will be executed when the button is clicked
         self.funcList = []
         self.text = text
         self.label = pyglet.text.Label(text=text, font_name='Arial', font_size=3 * height / 8,
                                        x=x + width // 2, y=y + height // 2, anchor_x='center', anchor_y='center',
-                                       color=textColor)
+                                       color=textColorRgba)
         self.quad = pyglet.graphics.vertex_list(4,
                                                 ('v2i', Shape2D.quad_vertices(x, y, width, height)),
-                                                ('c3B', quadColor * 4))
+                                                ('c3B', buttonColorRgb * 4))
 
     def draw(self):
         ##  @brief display button on screen
@@ -45,19 +46,19 @@ class Button(object):
             return True
         return False
 
-    def on_mouse(self, x, y, textColor, quadColor):
+    def on_mouse(self, x, y, textColorRgba, quadColorRgb):
         ##  @brief detect whether mouse is on button
         #   @details set dark color to show it's selected
-        if len(textColor) != 4 or [i for i in textColor if i < 0 or i > 255]:
+        if len(textColorRgba) != 4 or [i for i in textColorRgba if i < 0 or i > 255]:
             raise ValueError("The color should be rgba in which each number is between 0 and 255")
-        if len(quadColor) != 3 or [i for i in quadColor if i < 0 or i > 255]:
+        if len(quadColorRgb) != 3 or [i for i in quadColorRgb if i < 0 or i > 255]:
             raise ValueError("The color should be rgb in which each number is between 0 and 255")
         if self._checkMouse(x, y):
-            self.label.color = textColor
-            self.quad.colors = quadColor * 4
+            self.label.color = textColorRgba
+            self.quad.colors = quadColorRgb * 4
         else:
-            self.label.color = self.textColor
-            self.quad.colors = self.quadColor * 4
+            self.label.color = self.textColorRgba
+            self.quad.colors = self.buttonColorRgb * 4
 
     def on_resize(self, x, y, width, height):
         ##  @brief resize button with screen resized
@@ -88,8 +89,8 @@ class Button(object):
 class OnOffButton():
     ##  @brief OnOffButton module
     #   @details Create an on-off button with specified position, sizes, text, color, and functions
-    def __init__(self, x, y, width, height, LeftToRightFunc, RightToLeftFunc, textColor=(255, 0, 0, 255),
-                 quadColor=(0, 0, 0), slideQuadColor=(64, 64, 64), state=False, leftText="OFF", rightText="ON"):
+    def __init__(self, x, y, width, height, LeftToRightFunc, RightToLeftFunc, textColorRgba=(255, 0, 0, 255),
+                 buttonColorRgb=(0, 0, 0), slideQuadColorRgb=(64, 64, 64), state=False, leftText="OFF", rightText="ON"):
         ##  @brief Initializer
         #   @param x,y position of button
         #   @param width, height size of button
@@ -105,19 +106,19 @@ class OnOffButton():
         self.RightToLeftFunc = RightToLeftFunc
         self.leftText = pyglet.text.Label(text=leftText, font_name='Arial', font_size=3 * height // 7,
                                           x=x - width // 2 - 10, y=y, anchor_x='right', anchor_y='center',
-                                          color=textColor)
+                                          color=textColorRgba)
         self.rightText = pyglet.text.Label(text=rightText, font_name='Arial', font_size=3 * height // 7,
                                            x=x + 10 + width // 2, y=y, anchor_x='left', anchor_y='center',
-                                           color=textColor)
+                                           color=textColorRgba)
         self.quad = pyglet.graphics.vertex_list(4,
                                                 ('v2i',
                                                  Shape2D.quad_vertices(x - width // 2, y - height // 2, width, height)),
-                                                ('c3B', quadColor * 4))
+                                                ('c3B', buttonColorRgb * 4))
         self.slideQuad = pyglet.graphics.vertex_list(4,
                                                      ('v2i',
                                                       Shape2D.quad_vertices(x - 3 * width // 8, y - 5 * height // 8,
                                                                             width // 4, 5 * height // 4)),
-                                                     ('c3B', slideQuadColor * 4))
+                                                     ('c3B', slideQuadColorRgb * 4))
 
     def draw(self):
         ##  @brief display on-off button on screen
